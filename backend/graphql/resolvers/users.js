@@ -51,10 +51,10 @@ module.exports = {
     async register(
       _,
       {
-        registerInput: { username, email, password, confirmPassword }
+        registerInput: { name, username, email, password, confirmPassword }
       }) {
       // TODO: validate user data
-      const { valid, errors } = validateRegisterInput(username, email, password, confirmPassword)
+      const { valid, errors } = validateRegisterInput(name, username, email, password, confirmPassword)
       if (!valid) {
         throw new UserInputError('Errors', { errors });
       }
@@ -71,8 +71,9 @@ module.exports = {
       password = await bcrypt.hash(password, 12);
 
       const newUser = new User({
-        email,
+        name,
         username,
+        email,
         password,
         createdAt: new Date().toISOString()
       })

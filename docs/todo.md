@@ -7,8 +7,8 @@
 4. Menú de selección de nutricionista para el paciente ya registrado (query de gql: getAllNutritionists y mutación: registerAttentionRequest(idPaciente, idNutricionista))
 
 ## Backend
-1. Programar los modelos de usuario, nutricionista y paciente
-2. Programar los resolvers para las mutaciones de registerNutritionis registerPatient y registerAttentionRequest
+1. [HECHO] Programar los modelos de usuario, nutricionista y paciente
+2. [HECHO] Programar los resolvers para las mutaciones de registerNutritionis registerPatient y createAttentionRequest
 3. Programar las mutaciones acceptAttentionRequest(idPaciente, idNutricionista)
 4. Programar la query getAllNutritionists --> devuelve todos los nutricionista registrados
 5. Programar la query getPatients(idNutricionista) --> para un determinado id de nutricionista, devolver todos sus pacientes

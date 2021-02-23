@@ -1,4 +1,3 @@
-// const { buildSchema } = require('graphql');
 const { gql } = require('apollo-server-express');
 
 module.exports = gql`
@@ -36,14 +35,52 @@ module.exports = gql`
     _id: ID!
     tag: String!
   }
-  type User{
+  type AttentionRequest {
+    id: ID!
+    nutritionist: Nutritionist
+    state: RequestStates
+    createdAt: String
+  }
+  enum RequestStates {
+    PENDING
+    ACCEPTED
+    REJECTED
+  }
+  type User {
     id: ID!
     email: String!
     token: String!
+    name: String!
     username: String!
+    birthDate: String!
     createdAt: String!
+    attentionRequests: AttentionRequest
+  }
+  type Nutritionist {
+    id: ID!
+    email: String
+    token: String
+    name: String
+    username: String
+    birthDate: String
+    createdAt: String
+    patients: [Patient]
+  }
+  type Patient {
+    id: ID!
+    email: String!
+    token: String!
+    name: String!
+    username: String!
+    birthDate: String!
+    createdAt: String!
+    weight: Float
+    bodyMassIndex: Float
+    fatPercentage: Float
+    nutritionist: Nutritionist
   }
   input RegisterInput{
+    name: String!
     username: String!
     password: String!
     confirmPassword: String!
@@ -58,6 +95,10 @@ module.exports = gql`
   type Mutation {
     register(registerInput: RegisterInput): User!
     login(username: String!, password: String!): User!
+    createAttentionRequest(userId: String!, nutritionistId: String!): AttentionRequest
+    solveAttentionRequest(userId: String!, nutritionistId: String!, accepted: Boolean!): AttentionRequest!
+    createPatient(userId: String!, nutritionistId: String!): Patient!
+    createNutritionist(userId: String!): Nutritionist
     createPost(body: String!): Post!
     deletePost(postId: ID!): String!
     createComment(postId: ID!, body: String!): Post!

@@ -3,6 +3,9 @@ const categoryResolvers = require('./categories')
 const usersResolvers = require('./users');
 const postsResolvers = require('./posts');
 const commentsResolvers = require('./comments');
+const nutritionistsResolvers = require('./nutritionists');
+const patientResolvers = require('./patients');
+const attentionRequestsResolvers = require('./attention_requests');
 
 module.exports = {
   Post: {
@@ -18,9 +21,17 @@ module.exports = {
   Mutation: {
     ...usersResolvers.Mutation,
     ...postsResolvers.Mutation,
-    ...commentsResolvers.Mutation
+    ...commentsResolvers.Mutation,
+    ...nutritionistsResolvers.Mutation,
+    ...patientResolvers.Mutation,
+    ...attentionRequestsResolvers.Mutation,
+  },
+  RequestStates: {
+    PENDING: "Pending",
+    ACCEPTED: "Accepted",  // estos son los estados posibles de la solicitud de atención
+    REJECTED: "Rejected"
   },
   Subscription: {
     ...postsResolvers.Subscription
-  }
+  },
 }

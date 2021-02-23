@@ -1,0 +1,7 @@
+{
+  email: "martin@gmail.com",
+  username: "martin",
+  password: "unapass",
+  createdAt: "las una",
+  role: "client"
+}
